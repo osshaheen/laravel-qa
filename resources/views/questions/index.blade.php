@@ -3,7 +3,8 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-12">                        @include('layouts._message')
+
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
@@ -33,6 +34,11 @@
                                         <h3 class="mt-0"><a href="{{$question->url}}">{{$question->title}}</a></h3>
                                         <div class="ml-auto">
                                             <a href="{{ route('question.edit',$question->id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                                            <form class="form-delete" method="post" action="{{ route('question.destroy',$question->id) }}">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-sm btn-outline-danger" onclick="return confirm('are you sure . ?')">DELETE</button>
+                                            </form>
                                         </div>
                                     </div>
                                     <p class="lead">
